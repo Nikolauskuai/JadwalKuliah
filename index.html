@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Jadwal Kuliah Niko</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="login-page">
+  <main class="login-shell">
+    <section class="login-card" aria-labelledby="login-title">
+      <div class="brand-mark" aria-hidden="true">NK</div>
+      <h1 id="login-title">Jadwal Kuliah Niko</h1>
+      <p class="muted">Semester 5 · Semester Gasal 2026</p>
+      <form id="loginForm">
+        <label for="username">Username</label>
+        <input id="username" type="text" placeholder="Masukkan username" required autocomplete="username">
+        <label for="password">Password</label>
+        <input id="password" type="password" placeholder="Masukkan password" required autocomplete="current-password">
+        <button class="button-primary" type="submit">Masuk</button>
+      </form>
+      <p id="loginMessage" class="form-message" aria-live="polite"></p>
+    </section>
+  </main>
+  <script src="js/login.js"></script>
+</body>
+</html>

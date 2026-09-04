@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profil - Jadwal Kuliah Niko</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <header class="mobile-header">
+    <strong>Jadwal Kuliah Niko</strong>
+    <button class="menu-btn" id="menuBtn" type="button" aria-label="Buka menu navigasi" aria-controls="sidebar" aria-expanded="false">Menu</button>
+  </header>
+
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar" aria-label="Navigasi utama">
+      <div class="brand">Jadwal Kuliah Niko</div>
+      <nav>
+        <a class="nav-link" href="dashboard.html">Beranda</a>
+        <a class="nav-link" href="jadwal.html">Jadwal</a>
+        <a class="nav-link" href="matakuliah.html">Mata Kuliah</a>
+        <a class="nav-link active" href="profil.html">Profil</a>
+      </nav>
+      <div class="sidebar-footer">
+        <button class="dark-toggle" id="darkToggle" type="button" aria-label="Aktifkan atau matikan dark mode">
+          <span>Dark Mode</span>
+          <span class="toggle-track"><span class="toggle-thumb"></span></span>
+        </button>
+        <button class="nav-link logout-link" data-logout type="button">Logout</button>
+      </div>
+    </aside>
+
+    <main class="content">
+      <header class="topbar">
+        <div>
+          <h1>Profil Mahasiswa</h1>
+          <p>Data pribadi dan akademik Nikolaus Kuai.</p>
+          <p id="liveClock" class="clock"></p>
+        </div>
+        <div class="avatar" aria-hidden="true">NK</div>
+      </header>
+
+      <section class="profile-panel" aria-labelledby="profile-name">
+        <img class="profile-photo" src="../assets/img/profile.jpg" alt="Foto profil Nikolaus Kuai">
+        <div>
+          <h2 id="profile-name">NIKOLAUS KUAI</h2>
+          <div class="profile-details">
+            <div><strong>NIM</strong><span>241110056</span></div>
+            <div><strong>Email</strong><span>nikokuai16@gmail.com</span></div>
+            <div><strong>Fakultas</strong><span>Teknologi Informasi</span></div>
+            <div><strong>Prodi</strong><span>Informatika</span></div>
+            <div><strong>Kampus</strong><span>Kampus Gejayan</span></div>
+            <div><strong>Angkatan</strong><span>Semester Gasal 2024</span></div>
+            <div><strong>Jenis Perkuliahan</strong><span>Reguler Pagi [R1]</span></div>
+            <div><strong>Kurikulum</strong><span>Kurikulum Teknik Informatika 2026</span></div>
+            <div><strong>Semester</strong><span>Semester 5</span></div>
+            <div><strong>SKS</strong><span>72 SKS</span></div>
+            <div><strong>Kelas</strong><span>12D</span></div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="overlay" id="overlay"></div>
+  <nav class="bottom-nav" aria-label="Navigasi mobile">
+    <div class="bottom-nav-inner">
+      <a href="dashboard.html"><span>Beranda</span></a>
+      <a href="jadwal.html"><span>Jadwal</span></a>
+      <a href="matakuliah.html"><span>Matkul</span></a>
+      <a class="active" href="profil.html"><span>Profil</span></a>
+    </div>
+  </nav>
+
+  <script src="../js/app.js"></script>
+  <script>initPage('profil');</script>
+</body>
+</html>

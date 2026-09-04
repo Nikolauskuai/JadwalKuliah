@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beranda - Jadwal Kuliah Niko</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <header class="mobile-header">
+    <div class="brand">Jadwal Kuliah Niko</div>
+    <button class="menu-btn" id="menuBtn" type="button" aria-label="Buka menu navigasi" aria-controls="sidebar" aria-expanded="false">Menu</button>
+  </header>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar" aria-label="Navigasi utama">
+      <div class="brand">Jadwal Kuliah Niko</div>
+      <nav>
+        <a class="nav-link active" href="dashboard.html">Beranda</a>
+        <a class="nav-link" href="jadwal.html">Jadwal</a>
+        <a class="nav-link" href="matakuliah.html">Mata Kuliah</a>
+        <a class="nav-link" href="profil.html">Profil</a>
+      </nav>
+      <div class="sidebar-footer">
+        <button class="dark-toggle" id="darkToggle" type="button" aria-label="Aktifkan atau matikan dark mode">
+          <span>Dark Mode</span>
+          <div class="toggle-track"><div class="toggle-thumb"></div></div>
+        </button>
+        <button class="nav-link logout-link" data-logout>Logout</button>
+      </div>
+    </aside>
+    <main class="content">
+      <header class="topbar">
+        <div>
+          <h1>Selamat Datang, Nikolaus</h1>
+          <p id="todayDate">Memuat tanggal...</p>
+          <p id="liveClock" class="clock"></p>
+        </div>
+        <div class="avatar">NK</div>
+      </header>
+
+      <section class="dashboard-profile">
+        <img class="dashboard-profile-photo" src="../assets/img/profile.jpg" alt="Foto profil Nikolaus Kuai">
+        <div class="dashboard-profile-info">
+          <p class="profile-kicker">Profil Mahasiswa</p>
+          <h2>Nikolaus Kuai</h2>
+          <p>241110056 · Informatika</p>
+          <p>Fakultas Teknologi Informasi · Kelas 12D</p>
+        </div>
+        <a class="profile-link" href="profil.html">Lihat profil</a>
+      </section>
+
+      <section class="stats">
+        <div class="stat"><strong>Nikolaus Kuai</strong><span>Nama</span></div>
+        <div class="stat"><strong>5</strong><span>Semester</span></div>
+        <div class="stat"><strong>12D</strong><span>Kelas</span></div>
+        <div class="stat"><strong>8</strong><span>Total Mata Kuliah</span></div>
+        <div class="stat"><strong>21</strong><span>Total SKS</span></div>
+      </section>
+
+      <section class="schedule-table-section">
+        <div class="section-heading">
+          <div>
+            <h2>Jadwal Kuliah Semester 5</h2>
+            <p class="section-caption">Delapan mata kuliah · Total 21 SKS</p>
+          </div>
+          <a class="text-link" href="jadwal.html">Lihat jadwal</a>
+        </div>
+        <div class="table-wrapper">
+          <table class="schedule-table">
+            <caption class="sr-only">Jadwal kuliah semester 5 Nikolaus Kuai</caption>
+            <thead>
+              <tr>
+                <th scope="col">Hari</th>
+                <th scope="col">Jam</th>
+                <th scope="col">Kode</th>
+                <th scope="col">Mata Kuliah</th>
+                <th scope="col">SKS</th>
+                <th scope="col">Kelas</th>
+                <th scope="col">Ruang</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Senin</td><td>09:31 - 12:00</td><td>INF26052</td><td>Logika Fuzzy</td><td>3</td><td>12D</td><td>F204</td></tr>
+              <tr><td>Selasa</td><td>12:01 - 14:30</td><td>INF26053</td><td>Analisis dan Perancangan Sistem</td><td>3</td><td>12D</td><td>MKRT-104</td></tr>
+              <tr><td>Rabu</td><td>09:31 - 12:00</td><td>INF26035</td><td>Kalkulus</td><td>3</td><td>12D</td><td>F206</td></tr>
+              <tr><td>Rabu</td><td>12:01 - 14:30</td><td>INF26054</td><td>Komputer Grafik</td><td>3</td><td>12D</td><td>F206</td></tr>
+              <tr><td>Rabu</td><td>15:21 - 17:00</td><td>FTI26022</td><td>Komputer dan Masyarakat</td><td>2</td><td>12D</td><td>MKRT-206</td></tr>
+              <tr><td>Kamis</td><td>07:51 - 09:30</td><td>INF26055</td><td>Metodologi Riset Teknologi Informasi</td><td>2</td><td>12D</td><td>MKRT-301</td></tr>
+              <tr><td>Kamis</td><td>15:21 - 17:00</td><td>INF26042</td><td>Sistem Operasi</td><td>2</td><td>12D</td><td>MKRT-301</td></tr>
+              <tr><td>Jumat</td><td>14:31 - 17:00</td><td>INF26056</td><td>Deep Learning</td><td>3</td><td>12D</td><td>MKRT-301</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-heading"><h2>Jadwal Hari Ini</h2></div>
+        <div id="todaySchedule"></div>
+      </section>
+
+      <section class="dashboard-next-section">
+        <div class="section-heading"><h2>Kuliah Berikutnya</h2></div>
+        <div id="nextClass"></div>
+      </section>
+    </main>
+  </div>
+  <div class="overlay" id="overlay"></div>
+  <nav class="bottom-nav" aria-label="Navigasi mobile">
+    <div class="bottom-nav-inner">
+      <a href="dashboard.html" class="active"><span>Beranda</span></a>
+      <a href="jadwal.html"><span>Jadwal</span></a>
+      <a href="matakuliah.html"><span>Matkul</span></a>
+      <a href="profil.html"><span>Profil</span></a>
+    </div>
+  </nav>
+  <script src="../js/app.js"></script>
+  <script src="../js/jadwal.js"></script>
+  <script>
+    initPage('dashboard');
+    renderDashboard();
+  </script>
+</body>
+</html>

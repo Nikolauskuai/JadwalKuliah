@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jadwal Kuliah - Jadwal Kuliah Niko</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <header class="mobile-header">
+    <div class="brand">Jadwal Kuliah Niko</div>
+    <button class="menu-btn" id="menuBtn" type="button" aria-label="Buka menu navigasi" aria-controls="sidebar" aria-expanded="false">Menu</button>
+  </header>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar" aria-label="Navigasi utama">
+      <div class="brand">Jadwal Kuliah Niko</div>
+      <nav>
+        <a class="nav-link" href="dashboard.html">Beranda</a>
+        <a class="nav-link active" href="jadwal.html">Jadwal</a>
+        <a class="nav-link" href="matakuliah.html">Mata Kuliah</a>
+        <a class="nav-link" href="profil.html">Profil</a>
+      </nav>
+      <div class="sidebar-footer">
+        <button class="dark-toggle" id="darkToggle" type="button" aria-label="Aktifkan atau matikan dark mode">
+          <span>Dark Mode</span>
+          <div class="toggle-track"><div class="toggle-thumb"></div></div>
+        </button>
+        <button class="nav-link logout-link" data-logout>Logout</button>
+      </div>
+    </aside>
+    <main class="content">
+      <header class="topbar">
+        <div>
+          <h1>Jadwal Kuliah</h1>
+          <p id="todayDate">Memuat tanggal...</p>
+          <p id="liveClock" class="clock"></p>
+        </div>
+        <div class="avatar">NK</div>
+      </header>
+      <div class="filter-bar" id="filterBar">
+        <button class="filter-btn active" data-day="all">Semua</button>
+        <button class="filter-btn" data-day="Senin">Senin</button>
+        <button class="filter-btn" data-day="Selasa">Selasa</button>
+        <button class="filter-btn" data-day="Rabu">Rabu</button>
+        <button class="filter-btn" data-day="Kamis">Kamis</button>
+        <button class="filter-btn" data-day="Jumat">Jumat</button>
+      </div>
+      <div class="schedule-list" id="scheduleList"></div>
+    </main>
+  </div>
+  <div class="overlay" id="overlay"></div>
+  <nav class="bottom-nav" aria-label="Navigasi mobile">
+    <div class="bottom-nav-inner">
+      <a href="dashboard.html"><span>Beranda</span></a>
+      <a href="jadwal.html" class="active"><span>Jadwal</span></a>
+      <a href="matakuliah.html"><span>Matkul</span></a>
+      <a href="profil.html"><span>Profil</span></a>
+    </div>
+  </nav>
+  <script src="../js/app.js"></script>
+  <script src="../js/jadwal.js"></script>
+  <script>
+    initPage('jadwal');
+    renderJadwal('all');
+  </script>
+</body>
+</html>
