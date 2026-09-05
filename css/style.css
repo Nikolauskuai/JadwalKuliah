@@ -126,10 +126,14 @@ body.dark .schedule-table tbody tr:nth-child(even) { background: rgba(15, 23, 42
 
 .next-class { background: var(--surface); border-radius: var(--radius); border: 1px solid var(--border); padding: 20px; box-shadow: var(--shadow); }
 .next-class h3 { font-size: 16px; font-weight: 600; margin-bottom: 12px; }
-.next-class-item { display: flex; flex-direction: column; gap: 6px; }
+.next-class-item { display: flex; flex-direction: column; align-items: flex-start; gap: 7px; padding: 2px 0; }
+.next-class-status { color: var(--primary); font-size: 11px; font-weight: 750; letter-spacing: .06em; text-transform: uppercase; }
 .next-class-item .name { font-size: 18px; font-weight: 700; }
 .next-class-item .meta { font-size: 14px; color: var(--text-muted); }
-.next-class-item .countdown { font-size: 24px; font-weight: 700; color: var(--primary); margin-top: 8px; }
+.next-class-item .countdown { font-size: 30px; font-weight: 750; color: var(--primary); letter-spacing: .02em; line-height: 1.15; margin-top: 8px; }
+.notification-button { margin-top: 8px; padding: 9px 13px; border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--primary); background: var(--surface); font-size: 12px; font-weight: 700; transition: background .2s, border-color .2s, color .2s; }
+.notification-button:hover:not(:disabled) { border-color: var(--primary); background: var(--primary-light); }
+.notification-button:disabled { cursor: default; color: var(--text-muted); background: var(--bg); }
 .no-class { text-align: center; padding: 32px; color: var(--text-muted); font-size: 15px; }
 
 .course-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(260px, 100%), 1fr)); gap: 16px; }

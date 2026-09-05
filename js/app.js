@@ -1,5 +1,7 @@
 const AUTH_KEY = 'nk_auth';
 const DARK_KEY = 'nk_dark';
+const NOTIFICATION_KEY = 'nk_last_class_notification';
+let nextClassTimer;
 
 const jadwalKuliah = [
   {
@@ -199,17 +201,61 @@ function renderDashboard() {
     `).join('')
     : '<p class="no-class">Tidak ada jadwal kuliah hari ini.</p>';
 
+  nextClass.addEventListener('click', event => {
+    if (event.target.closest('[data-enable-notifications]')) {
+      enableClassNotifications();
+    }
+  });
+
+  renderNextClass();
+  clearInterval(nextClassTimer);
+  nextClassTimer = setInterval(renderNextClass, 1000);
+}
+
+function getClassTarget(next, now) {
+  const target = new Date(now);
+  target.setDate(target.getDate() + next.dayOffset);
+  const [hours, minutes] = next.mulai.split(':');
+  target.setHours(hours, minutes, 0, 0);
+  return target;
+}
+
+function enableClassNotifications() {
+  const button = document.querySelector('[data-enable-notifications]');
+
+  if (!('Notification' in window)) {
+    if (button) {
+      button.textContent = 'Notifikasi tidak didukung';
+      button.disabled = true;
+    }
+    return;
+  }
+
+  Notification.requestPermission().then(permission => {
+    if (button) {
+      button.textContent = permission === 'granted'
+        ? 'Notifikasi aktif'
+        : 'Izin notifikasi ditolak';
+      button.disabled = permission === 'granted';
+    }
+  });
+}
+
+function renderNextClass() {
+  const nextClass = document.getElementById('nextClass');
+
+  if (!nextClass) {
+    return;
+  }
+
+  const now = new Date();
   const next = getNextClass(now);
   if (!next) {
     nextClass.innerHTML = '<p class="no-class">Belum ada jadwal berikutnya.</p>';
     return;
   }
 
-  const target = new Date(now);
-  target.setDate(target.getDate() + next.dayOffset);
-  const [hours, minutes] = next.mulai.split(':');
-  target.setHours(hours, minutes, 0, 0);
-
+  const target = getClassTarget(next, now);
   const remaining = Math.max(0, target - now);
   const days = Math.floor(remaining / 86400000);
   const hoursLeft = Math.floor(remaining % 86400000 / 3600000);
@@ -217,14 +263,42 @@ function renderDashboard() {
   const secondsLeft = Math.floor(remaining % 60000 / 1000);
   const dayLabel = days ? `${days} hari ` : '';
   const countdown = `${dayLabel}${String(hoursLeft).padStart(2, '0')}:${String(minutesLeft).padStart(2, '0')}:${String(secondsLeft).padStart(2, '0')}`;
+  const scheduleKey = `${next.hari}-${next.mulai}-${next.kode}`;
 
-  nextClass.innerHTML = `
-    <article class="next-class-item">
-      <strong class="name">${next.nama}</strong>
-      <span class="meta">${next.hari}, ${next.mulai} - ${next.selesai} · Ruang ${next.ruang}</span>
-      <strong class="countdown">${countdown}</strong>
-    </article>
-  `;
+  if (nextClass.dataset.scheduleKey !== scheduleKey) {
+    nextClass.dataset.scheduleKey = scheduleKey;
+    nextClass.innerHTML = `
+      <article class="next-class-item">
+        <span class="next-class-status">Jadwal terdekat</span>
+        <strong class="name">${next.nama}</strong>
+        <span class="meta">${next.hari}, ${next.mulai} - ${next.selesai} · Ruang ${next.ruang}</span>
+        <strong class="countdown"></strong>
+        <button class="notification-button" type="button" data-enable-notifications>Aktifkan notifikasi</button>
+      </article>
+    `;
+  }
+
+  const countdownElement = nextClass.querySelector('.countdown');
+  if (countdownElement) {
+    countdownElement.textContent = countdown;
+  }
+
+  notifyUpcomingClass(next, target, now);
+}
+
+function notifyUpcomingClass(next, target, now) {
+  if (!('Notification' in window) || Notification.permission !== 'granted') {
+    return;
+  }
+
+  const minutesUntilClass = (target - now) / 60000;
+  const notificationKey = `${target.toISOString()}-${next.kode}`;
+  if (minutesUntilClass > 0 && minutesUntilClass <= 30 && localStorage.getItem(NOTIFICATION_KEY) !== notificationKey) {
+    new Notification(`Kuliah dimulai dalam ${Math.ceil(minutesUntilClass)} menit`, {
+      body: `${next.nama} · ${next.mulai} - ${next.selesai} · Ruang ${next.ruang}`
+    });
+    localStorage.setItem(NOTIFICATION_KEY, notificationKey);
+  }
 }
 
 function formatDuration(totalMinutes) {
