@@ -57,6 +57,16 @@
         <div class="stat"><strong>21</strong><span>Total SKS</span></div>
       </section>
 
+      <section class="course-statistics" aria-labelledby="courseStatisticsTitle">
+        <div class="section-heading">
+          <div>
+            <h2 id="courseStatisticsTitle">Statistik Kuliah</h2>
+            <p class="section-caption">Ringkasan otomatis dari jadwal semester 5</p>
+          </div>
+        </div>
+        <div class="course-statistics-grid" id="courseStatistics"></div>
+      </section>
+
       <section class="schedule-table-section">
         <div class="section-heading">
           <div>
@@ -118,6 +128,7 @@
   <script>
     initPage('dashboard');
     renderDashboard();
+    renderCourseStatistics();
   </script>
 </body>
 </html>

@@ -227,6 +227,71 @@ function renderDashboard() {
   `;
 }
 
+function formatDuration(totalMinutes) {
+  const hours = Math.floor(totalMinutes / 60);
+  const minutes = totalMinutes % 60;
+
+  if (!minutes) {
+    return `${hours} jam`;
+  }
+
+  return `${hours} jam ${minutes} menit`;
+}
+
+function renderCourseStatistics() {
+  const statistics = document.getElementById('courseStatistics');
+
+  if (!statistics || typeof jadwalKuliah === 'undefined') {
+    return;
+  }
+
+  const totalSks = jadwalKuliah.reduce((sum, item) => sum + Number(item.sks), 0);
+  const totalMinutes = jadwalKuliah.reduce(
+    (sum, item) => sum + toMinutes(item.selesai) - toMinutes(item.mulai),
+    0
+  );
+  const durationByDay = jadwalKuliah.reduce((days, item) => {
+    const duration = toMinutes(item.selesai) - toMinutes(item.mulai);
+    days[item.hari] = (days[item.hari] || 0) + duration;
+    return days;
+  }, {});
+  const busiestDuration = Math.max(...Object.values(durationByDay));
+  const busiestDays = Object.entries(durationByDay)
+    .filter(([, duration]) => duration === busiestDuration)
+    .map(([day]) => day)
+    .join(', ');
+  const highestSks = Math.max(...jadwalKuliah.map(item => Number(item.sks)));
+  const highestSksCourses = jadwalKuliah
+    .filter(item => Number(item.sks) === highestSks)
+    .map(item => item.nama)
+    .join(', ');
+
+  statistics.innerHTML = `
+    <article class="course-stat-card">
+      <span class="course-stat-label">Total SKS</span>
+      <strong>${totalSks} <small>SKS</small></strong>
+    </article>
+    <article class="course-stat-card">
+      <span class="course-stat-label">Total Mata Kuliah</span>
+      <strong>${jadwalKuliah.length}</strong>
+    </article>
+    <article class="course-stat-card">
+      <span class="course-stat-label">Total Jam Kuliah per Minggu</span>
+      <strong>${formatDuration(totalMinutes)}</strong>
+    </article>
+    <article class="course-stat-card">
+      <span class="course-stat-label">Hari Kuliah Paling Padat</span>
+      <strong>${busiestDays}</strong>
+      <span class="course-stat-detail">${formatDuration(busiestDuration)} durasi kuliah</span>
+    </article>
+    <article class="course-stat-card course-stat-card-wide">
+      <span class="course-stat-label">Mata Kuliah dengan SKS Terbanyak</span>
+      <strong>${highestSks} SKS</strong>
+      <span class="course-stat-detail">${highestSksCourses}</span>
+    </article>
+  `;
+}
+
 function setupMobileMenu() {
   const menuBtn = document.getElementById('menuBtn');
   const sidebar = document.querySelector('.sidebar');
