@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Biaya Kuliah - Jadwal Kuliah Niko</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <header class="mobile-header">
+    <div class="brand">Jadwal Kuliah Niko</div>
+    <button class="menu-btn" id="menuBtn" type="button" aria-label="Buka menu navigasi" aria-controls="sidebar" aria-expanded="false">Menu</button>
+  </header>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar" aria-label="Navigasi utama">
+      <div class="brand">Jadwal Kuliah Niko</div>
+      <nav>
+        <a class="nav-link" href="dashboard.html">Beranda</a>
+        <a class="nav-link" href="jadwal.html">Jadwal</a>
+        <a class="nav-link" href="matakuliah.html">Mata Kuliah</a>
+        <a class="nav-link active" href="biaya.html">Biaya Kuliah</a>
+        <a class="nav-link" href="profil.html">Profil</a>
+      </nav>
+      <div class="sidebar-footer">
+        <button class="dark-toggle" id="darkToggle" type="button" aria-label="Aktifkan atau matikan dark mode">
+          <span>Dark Mode</span>
+          <span class="toggle-track"><span class="toggle-thumb"></span></span>
+        </button>
+        <button class="nav-link logout-link" data-logout type="button">Logout</button>
+      </div>
+    </aside>
+    <main class="content">
+      <header class="topbar">
+        <div>
+          <h1>Biaya Kuliah</h1>
+          <p>Catatan pembayaran Semester 5</p>
+          <p id="liveClock" class="clock"></p>
+        </div>
+        <div class="avatar" aria-hidden="true">NK</div>
+      </header>
+
+      <section class="tuition-summary" aria-labelledby="tuitionSummaryTitle">
+        <div>
+          <span class="course-stat-label">Total biaya semester 5</span>
+          <strong id="totalTuition">Rp0</strong>
+        </div>
+        <span id="paymentCount" class="tuition-count">0 pembayaran</span>
+      </section>
+
+      <section class="tuition-layout">
+        <form class="tuition-form" id="paymentForm">
+          <div class="section-heading">
+            <div>
+              <h2 id="tuitionFormTitle">Tambah Pembayaran</h2>
+              <p class="section-caption">Simpan catatan pembayaran Semester 5</p>
+            </div>
+          </div>
+          <input type="hidden" id="paymentId">
+          <label for="paymentDescription">Keterangan</label>
+          <input id="paymentDescription" name="description" type="text" placeholder="Contoh: Uang kuliah semester" required maxlength="100">
+          <label for="paymentAmount">Nominal</label>
+          <input id="paymentAmount" name="amount" type="number" min="1" step="1" placeholder="Masukkan nominal" required>
+          <label for="paymentDate">Tanggal</label>
+          <input id="paymentDate" name="date" type="date" required>
+          <div class="tuition-form-actions">
+            <button class="button-primary" type="submit" id="paymentSubmit">Simpan Pembayaran</button>
+            <button class="button-secondary" type="button" id="paymentCancel" hidden>Batal</button>
+          </div>
+          <p id="paymentMessage" class="form-message" aria-live="polite"></p>
+        </form>
+
+        <section class="payment-list-section" aria-labelledby="paymentListTitle">
+          <div class="section-heading">
+            <div>
+              <h2 id="paymentListTitle">Daftar Pembayaran</h2>
+              <p class="section-caption">Riwayat pembayaran Semester 5</p>
+            </div>
+          </div>
+          <div id="paymentList" class="payment-list"></div>
+        </section>
+      </section>
+    </main>
+  </div>
+  <div class="overlay" id="overlay"></div>
+  <nav class="bottom-nav" aria-label="Navigasi mobile">
+    <div class="bottom-nav-inner">
+      <a href="dashboard.html"><span>Beranda</span></a>
+      <a href="jadwal.html"><span>Jadwal</span></a>
+      <a href="matakuliah.html"><span>Matkul</span></a>
+      <a href="biaya.html" class="active"><span>Biaya</span></a>
+      <a href="profil.html"><span>Profil</span></a>
+    </div>
+  </nav>
+  <script src="../js/app.js"></script>
+  <script src="../js/biaya.js"></script>
+  <script>initPage('biaya'); initTuitionPage();</script>
+</body>
+</html>

@@ -188,6 +188,33 @@ body.dark .schedule-table tbody tr:nth-child(even) { background: rgba(255, 255, 
 .next-class h2 { margin-bottom: 18px; font-size: 22px; }
 .profile-panel .profile-photo { background: var(--surface); }
 
+.tuition-summary { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 22px 24px; margin-bottom: var(--content-gap); background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--primary); border-radius: var(--radius); box-shadow: var(--shadow); }
+.tuition-summary > div { min-width: 0; }
+.tuition-summary strong { display: block; margin-top: 5px; color: var(--primary); font-size: 30px; line-height: 1.2; overflow-wrap: anywhere; }
+.tuition-count { color: var(--text-muted); font-size: 13px; white-space: nowrap; }
+.tuition-layout { display: grid; grid-template-columns: minmax(280px, .75fr) minmax(0, 1.25fr); gap: 24px; align-items: start; }
+.tuition-form { padding: 22px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+.tuition-form label { display: block; margin: 16px 0 7px; color: var(--text); font-size: 12px; font-weight: 700; }
+.tuition-form input { width: 100%; padding: 11px 13px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--surface-dark); color: var(--text); outline: none; transition: border-color .2s, box-shadow .2s; }
+.tuition-form input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(229, 9, 20, .18); }
+.tuition-form-actions { display: flex; gap: 10px; margin-top: 20px; }
+.tuition-form-actions .button-primary { margin-top: 0; }
+.button-secondary { padding: 13px 15px; border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--text-muted); font-size: 14px; font-weight: 700; white-space: nowrap; }
+.button-secondary:hover { border-color: var(--primary); color: var(--text); }
+.payment-list-section { min-width: 0; }
+.payment-list { display: grid; gap: 12px; }
+.payment-item { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; gap: 16px; align-items: center; padding: 17px 18px; background: var(--surface-dark); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+.payment-item-info { min-width: 0; display: grid; gap: 4px; }
+.payment-item-info strong { overflow-wrap: anywhere; }
+.payment-item-info span { color: var(--text-muted); font-size: 12px; }
+.payment-amount { color: var(--primary); font-size: 14px; white-space: nowrap; }
+.payment-actions { display: flex; gap: 8px; }
+.payment-action { padding: 7px 9px; border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--text-muted); font-size: 12px; font-weight: 700; }
+.payment-action:hover { border-color: var(--primary); color: var(--text); }
+.payment-action-danger:hover { border-color: #ef233c; color: #ff5a63; }
+.form-message-success { color: var(--success); }
+.form-message-error { color: var(--warning); }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
 }
@@ -221,6 +248,7 @@ body.dark .schedule-table tbody tr:nth-child(even) { background: rgba(255, 255, 
   .filter-bar { overflow-x: auto; flex-wrap: nowrap; padding-bottom: 4px; }
   .filter-btn { white-space: nowrap; }
   .dashboard-grid { grid-template-columns: 1fr; }
+  .tuition-layout { grid-template-columns: 1fr; }
   .schedule-meta span + span { border-left: 0; padding-left: 0; }
   .dashboard-profile { grid-template-columns: 64px 1fr; gap: 12px; padding: 16px; }
   .dashboard-profile-photo { width: 64px; height: 64px; }
@@ -267,4 +295,10 @@ body.dark .schedule-table tbody tr:nth-child(even) { background: rgba(255, 255, 
   .course-stat-card { min-height: 116px; }
   .profile-panel { padding: 16px; }
   .profile-panel h2 { font-size: 19px; }
+  .tuition-summary { align-items: flex-start; flex-direction: column; padding: 18px; }
+  .tuition-summary strong { font-size: 26px; }
+  .tuition-form { padding: 18px; }
+  .payment-item { grid-template-columns: 1fr auto; gap: 10px; }
+  .payment-amount { grid-column: 2; grid-row: 1; }
+  .payment-actions { grid-column: 1 / -1; }
 }
